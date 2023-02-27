@@ -17,18 +17,22 @@ import java.security.NoSuchAlgorithmException;
 
 @RestController
 public class URLController {
-    @Autowired
-    private URLService urlService;
+  @Autowired
+  private URLService urlService;
 
-    // URL should have complete address ex: "https://www.google.com"
-    @PostMapping("/generate")
-    public ResponseEntity<String> generateURL(@RequestBody Request request) throws UnsupportedEncodingException, NoSuchAlgorithmException {
-        return urlService.generateURL(request);
-    }
+  // URL should have complete address ex: "https://www.google.com"
+  @PostMapping("/generate")
+  public ResponseEntity<String> generateURL(@RequestBody Request request)
+    throws UnsupportedEncodingException, NoSuchAlgorithmException {
 
-    @GetMapping("/resolve/{shortURL}")
-    public void resolveURL(HttpServletResponse httpServletResponse, @PathVariable String shortURL) throws IOException {
-       urlService.fetchURL(httpServletResponse,shortURL);
-    }
+    return urlService.generateURL(request);
+  }
+
+  @GetMapping("/resolve/{shortURL}")
+  public void resolveURL(HttpServletResponse httpServletResponse, @PathVariable String shortURL)
+    throws IOException {
+
+    urlService.fetchURL(httpServletResponse, shortURL);
+  }
 
 }
