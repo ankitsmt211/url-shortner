@@ -63,4 +63,16 @@ public class URLService {
     } else throw new RuntimeException("bad request");
   }
 
+
+  public void removeURL(HttpServletResponse httpServletResponse, String shortURL){
+    urlRepository.deleteById(shortURL);
+    httpServletResponse.setStatus(200);
+  }
+
+
+  public void updateURL(HttpServletResponse httpServletResponse, String shortURL, String longURL){
+    URLEntity url = new URLEntity(shortURL,longURL);
+    urlRepository.save(url);
+  }
+
 }
